@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Paper, TextField } from '@mui/material';
 
 const SearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,15 +10,17 @@ const SearchBar = (props) => {
   };
 
   return (
-    <Paper>
+    <div className='search-bar'>
       <form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          label='Search....'
+        <input
+          className='search-input'
+          type='text'
+          placeholder='Search...'
+          value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-    </Paper>
+    </div>
   );
 };
 

@@ -1,6 +1,4 @@
 import './App.css';
-
-import { Grid } from '@mui/material';
 import youtube from './api/youtube';
 import { SearchBar, VideoDetail, VideoList } from './Components/index';
 import { useState } from 'react';
@@ -10,7 +8,7 @@ const App = () => {
   const [selectedVideos, setSelectedVideos] = useState(null);
 
   const onSelectVideo = (video) => {
-    selectedVideos(video);
+    setSelectedVideos(video);
   };
 
   const handleSubmit = async (searchTerm) => {
@@ -27,24 +25,19 @@ const App = () => {
   };
 
   return (
-    <Grid justifyContent={'center'} container spacing={16}>
-      <Grid item xs={11}>
-        <Grid container spacing={10}>
-          <Grid item xs={12}>
-            {/* {Search bar} */}
-            <SearchBar onFormSubmit={handleSubmit} />
-          </Grid>
-          <Grid item xs={8}>
-            {/* VIDEO DETAILS */}
-            <VideoDetail video={selectedVideos} />
-          </Grid>
-          <Grid item xs={4}>
-            {/* Video lists */}
-            <VideoList videos={videos} onVideoSelect={onSelectVideo} />
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+    <div className='app-container'>
+      <div className='search-bar-container'>
+        <SearchBar onFormSubmit={handleSubmit} />
+      </div>
+      <div className='content-container'>
+        <div className='video-detail-container'>
+          <VideoDetail video={selectedVideos} />
+        </div>
+        <div className='video-list-container'>
+          <VideoList videos={videos} onVideoSelect={onSelectVideo} />
+        </div>
+      </div>
+    </div>
   );
 };
 
